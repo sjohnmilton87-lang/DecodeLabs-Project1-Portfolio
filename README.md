@@ -41,7 +41,7 @@ Technologies Used
 Repository Files
 
 - index.html
-- style.css
+- index-style.css
 - script.js
 - server.js
 - package.json
