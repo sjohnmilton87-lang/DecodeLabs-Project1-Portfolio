@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-// Temporary storage - like a mini database
 let messages = [];
 let idCounter = 1;
-
-// GET - Read all messages
 router.get('/', (req, res) => {
     res.status(200).json({
         status: 'success',
@@ -14,7 +10,6 @@ router.get('/', (req, res) => {
     });
 });
 
-// POST - Save a new message
 router.post('/', (req, res) => {
     const { name, email, message } = req.body;
 
@@ -26,7 +21,6 @@ router.post('/', (req, res) => {
         });
     }
 
-    // Check email format
     const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailCheck.test(email)) {
         return res.status(400).json({
@@ -34,8 +28,6 @@ router.post('/', (req, res) => {
             message: 'Please enter a valid email'
         });
     }
-
-    // Save the message
     const newMessage = {
         id: idCounter++,
         name: name,
@@ -45,8 +37,6 @@ router.post('/', (req, res) => {
     };
 
     messages.push(newMessage);
-
-    // Send success response
     res.status(201).json({
         status: 'success',
         message: 'Message received successfully!',
